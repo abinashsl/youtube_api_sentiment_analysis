@@ -44,23 +44,17 @@ def comment_downloader(youtube, id, pageToken=None, data=None):
 
 #Reading Extracted Comments CSV File
 def read_comments():
+    global df
     df = pd.read_csv("comments.csv")
-    print("Columns: ",list(df.columns))
-    df.head(2)
-
 
     #Initializing Sentiment Analyzer 
-
     analyzer = SentimentIntensityAnalyzer()
 
-
     #Mapping Sentiment Scores to dataframe
-
     for key, comment in enumerate(df["Comments"]):
         scores = analyzer.polarity_scores(comment)
         for keys in scores:
             df.loc[key,keys] = scores[keys]
-    print(df)
     return df        
 
 #Scatter Plot of Comments by Density
