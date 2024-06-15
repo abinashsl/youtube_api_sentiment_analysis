@@ -36,9 +36,9 @@ if 'data' in st.session_state:
     data = comment_downloader(youtube, video_id)
     st.session_state['max_rows'] = len(data['Comments'])
     st.session_state['num_rows'] = 10
-    st.header(f"Displaying {st.session_state['num_rows']} rows of the data:", divider="blue")
     st.sidebar.header('Filters')
     st.session_state['num_rows'] = st.sidebar.slider('No. of rows to display', min_value=5, max_value=st.session_state['max_rows'], value=10, step=10, label_visibility='visible')
+    st.header(f"Displaying {st.session_state['num_rows']} rows of the data:", divider="blue")
     st.write(data.head(st.session_state['num_rows']))
     st.header('Line Chart', divider='blue')
     st.bar_chart(data=data, x= 'Like_Counts', y = 'Reply_Comments')
