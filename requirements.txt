@@ -3,3 +3,4 @@ streamlit
 google-api-python-client
 pandas
 numpy
+nltk
